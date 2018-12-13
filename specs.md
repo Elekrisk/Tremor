@@ -1,6 +1,6 @@
 # Tremor Specification
 
-## Datatypes
+## Data types
 
 There are multiple data types in Tremor.
 
@@ -39,3 +39,14 @@ There are two floating point datatypes: `f32` and `f64`. As the names suggest,
 one is 32 bits wide and the other is 64 bits wide. These datatypes follow the
 `binary32` and `binary64` *IEEE 754* formats.
 
+### Pointer
+
+A pointer holds a memory address to a value of a specific data type. A pointer
+type is written like this: `<type>*`, where `<type>` is a valid data type.
+As a pointer is a valid data type, a pointer can point to another pointer.
+
+The value that the pointer is pointing to can be accessed via the dereference
+operator, the unary `*`, like so: `*variable`.
+
+The address to a variable can be accessed via the unary `&` operator, in a similar
+way that the dereference operates.

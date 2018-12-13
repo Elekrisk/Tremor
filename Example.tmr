@@ -1,0 +1,88 @@
+extern func strlen(ptr: u8*): u32 !nomangle;
+extern func malloc(size: u64): u8* !nomangle;
+extern func memcpy(dest: u8*, source: u8*, num: u64): u8* !nomangle;
+extern func strcat(dest: u8*, source: u8*): u8* !nomangle;
+extern func printf(format: u8* /*, ...*/): i32 !nomangle !disableargcheck;
+
+class String
+{
+	let size: u64 = 0;
+	let ptr: char* = nullptr;
+	
+	constr String(ptr: char*)
+	{
+		self.size <- strlen(ptr):
+		self.ptr <- malloc(self.size);
+		memcpy(ptr, self.ptr, self.size);
+	}
+	
+	destr String()
+	{
+		if self.ptr != nullptr
+		{
+			free(self.ptr);
+		}
+	}
+	
+	func getPtr(): char*
+	{
+		return self.ptr;
+	}
+	
+	func getSize(): u64
+	{
+		return self.size;
+	}
+	
+	static func operator +(leftptr: String*, rightptr: String*): String
+	{
+		let left = *leftptr;
+		let right = *rightptr;
+		let s1 = left.getPtr();
+		let s2 = right.getPtr();
+		let totSize = left.getSize() + right.getSize() + 1u32;
+		let res = malloc(totSize);
+		memcpy(res, s1, left.getSize());
+		strcat(res, s2);
+		return new String(res);
+	}
+}
+
+func main(): i32
+{
+	let str = new String("Hello :D");
+	printf("%s: %c", str.getPtr(), str.getSize());
+	return 0;
+}
+
+// Turns into something like
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
