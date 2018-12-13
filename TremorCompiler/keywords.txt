@@ -1,0 +1,14 @@
+u8 u16 u32 u64
+i8 i16 i32 i64
+char wchar
+bool
+f32 f64
+func class
+enum namespace
+this let
+if else
+for while do
+continue break
+private public
+constr destr
+extern
