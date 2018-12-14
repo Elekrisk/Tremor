@@ -4,17 +4,26 @@ extern func memcpy(dest: u8*, source: u8*, num: u64): u8* !nomangle;
 extern func strcat(dest: u8*, source: u8*): u8* !nomangle;
 extern func printf(format: u8* /*, ...*/): i32 !nomangle !disableargcheck;
 
+_DEBUG_
+#define _DEBUG_ 1
+#define HELLO _DEBUG_
+
 class String
 {
-	let size: u64 = 0;
+
+#ifdef _DEBUG_
+	let _DEBUG_size: u64_DEBUG_ _DEBUG_ = 0;
 	let ptr: char* = nullptr;
-	
+#ifdef AAAAAAA
+	let aaa: bbb = ccc;
+#endif
 	constr String(ptr: char*)
 	{
 		self.size <- strlen(ptr):
 		self.ptr <- malloc(self.size);
 		memcpy(ptr, self.ptr, self.size);
 	}
+#endif
 	
 	destr String()
 	{
@@ -54,35 +63,3 @@ func main(): i32
 	printf("%s: %c", str.getPtr(), str.getSize());
 	return 0;
 }
-
-// Turns into something like
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

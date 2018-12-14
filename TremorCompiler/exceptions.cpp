@@ -1,20 +1,17 @@
 #include "exceptions.h"
 
-namespace TremorCompiler
+TremorException::TremorException()
 {
-	TremorException::TremorException()
-	{
 
-	}
+}
 
-	TremorException::TremorException(const std::string &msg)
-	{
-		message = msg;
-	}
+TremorException::TremorException(const std::string &msg)
+{
+	message = msg;
+}
 
-	TremorException::TremorException(const std::string &msg, Location loc)
-	{
-		message = msg;
-		location = loc;
-	}
+TremorException::TremorException(const std::string &msg, Location loc)
+{
+	message = msg;
+	location = loc;
 }

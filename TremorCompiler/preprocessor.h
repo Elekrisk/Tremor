@@ -4,19 +4,24 @@
 #include <iostream>
 #include <filesystem>
 
-namespace TremorCompiler
+class Preprocessor
 {
-	class Preprocessor
-	{
-		std::map<std::string, std::string> macros;
+	std::map<std::string, std::string> macros;
 
-		size_t line;
-		size_t column;
+	std::vector<std::string> lines;
 
-	public:
-		Preprocessor();
-		void define(const std::string &macro, const std::string &value);
+	size_t row;
 
-		std::string process(const std::filesystem::path &path);
-	};
-}
+	void processDirective(const std::string& line);
+	void processIfdef(const std::string& line);
+	void processDefine(const std::string& line);
+	void replaceMacro(std::string& line);
+
+	void error(const std::string& msg, size_t row, size_t col) const;
+
+public:
+	Preprocessor();
+	void define(std::string macro, std::string value);
+
+	std::string process(const std::filesystem::path &path);
+};
